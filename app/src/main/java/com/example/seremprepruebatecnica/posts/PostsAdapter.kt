@@ -50,5 +50,5 @@ class FavoriteClickListener(val clickListener: (postID: Long) -> Unit){
     fun onClick(post: Posts) = clickListener(post.id)
 }
 class NavigateToDetails(val clickListener: (postID: Long) -> Unit){
-    fun onClick(post: Posts) = clickListener(post.id)
+    fun onClick(post: Posts) = clickListener(post.userId)
 }
