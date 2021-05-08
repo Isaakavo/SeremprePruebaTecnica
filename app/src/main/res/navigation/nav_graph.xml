@@ -10,5 +10,18 @@
         android:id="@+id/postOverview"
         android:name="com.example.seremprepruebatecnica.posts.PostOverview"
         android:label="fragment_post_overview"
-        tools:layout="@layout/fragment_post_overview" />
+        tools:layout="@layout/fragment_post_overview" >
+        <action
+            android:id="@+id/action_postOverview_to_details"
+            app:destination="@id/details" />
+    </fragment>
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.seremprepruebatecnica.details.Details"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment>
 </navigation>
