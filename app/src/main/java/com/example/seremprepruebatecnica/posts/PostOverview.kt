@@ -5,7 +5,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.seremprepruebatecnica.R
+import com.example.seremprepruebatecnica.SwipeDelete
 import com.example.seremprepruebatecnica.databinding.FragmentPostOverviewBinding
 import kotlinx.android.synthetic.main.fragment_post_overview.*
 
@@ -42,6 +44,9 @@ class PostOverview : Fragment() {
                 onNavigate(posts.userId)
             }
         )
+
+        val itemTouchHelper = ItemTouchHelper(SwipeDelete(context, viewModel))
+        itemTouchHelper.attachToRecyclerView(binding.recyclewView)
 
         viewModel.posts.observe(viewLifecycleOwner, { posts->
             posts.forEach { post->
