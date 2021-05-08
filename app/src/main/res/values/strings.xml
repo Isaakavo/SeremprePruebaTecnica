@@ -16,4 +16,12 @@
     <string name="bs">BS: %1$s</string>
     <string name="catchPhrase">Catch Phrase: %1$s</string>
     <string name="nameCompany">Name:  %1$s</string>
+    <string name="refresh">Refresh</string>
+    <string name="delete_all_posts">Delete All Posts</string>
+    <string name="filter_favorites">Filter Favorites</string>
+    <string name="all_favorites">All Favorites</string>
+    <string name="Favorites">Favorites</string>
+    <string name="all_posts">All Posts</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
 </resources>
