@@ -5,6 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
@@ -21,6 +22,8 @@ private val retrofit = Retrofit.Builder()
 interface PostAPIService{
     @GET("posts")
     suspend fun getPosts(): List<Posts>
+    @GET("users/{id}")
+    suspend fun getUsers(@Path("id", encoded = false) id: Long): Users
 }
 
 object PostApi{
