@@ -70,6 +70,7 @@ class PostOverview : Fragment() {
         return binding.root
     }
 
+    //I know there are better form to manage the filter, instead o make a copy of all the list.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("All Posts")

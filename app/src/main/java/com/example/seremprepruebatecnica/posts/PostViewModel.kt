@@ -16,6 +16,7 @@ class PostViewModel: ViewModel() {
     val posts: LiveData<List<Posts>>
         get() = _posts
 
+    //I have a backup of the original list to make the filters.
     private var _postBackUp = MutableLiveData<List<Posts>>()
     val postBackUp: LiveData<List<Posts>>
         get() = _postBackUp

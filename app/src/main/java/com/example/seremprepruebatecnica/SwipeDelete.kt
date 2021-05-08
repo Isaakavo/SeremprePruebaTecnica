@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.seremprepruebatecnica.posts.PostViewModel
 
+//I'm not sure if it's safe to pass a viewmodel reference to a class like this
+//But it was the only form I'd manage the swipe function
+
 class SwipeDelete(context: Context?, val viewModel: PostViewModel): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val background = ColorDrawable(ContextCompat.getColor(context!!, R.color.red))
@@ -23,9 +26,7 @@ class SwipeDelete(context: Context?, val viewModel: PostViewModel): ItemTouchHel
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.bindingAdapterPosition
-        Log.d("pos", "$position")
         val list = viewModel.posts.value
-        Log.d("pos", "${list?.get(position)}")
         viewModel.setPosts(list?.filter { it.id != list.get(position).id })
     }
 

@@ -29,8 +29,6 @@ class PostsAdapter(private val favoriteClickListener: FavoriteClickListener,
 
     override fun onBindViewHolder(holder: PostsViewHolder, position: Int) {
         val post = getItem(position)
-
-        Log.d("postision", "${post.id}")
         holder.bind(post, favoriteClickListener, navigate)
     }
 
