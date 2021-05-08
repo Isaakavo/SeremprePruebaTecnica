@@ -28,9 +28,9 @@ fun bindBody(textView: TextView, body: String){
 @BindingAdapter("isRead")
 fun bindIsRead(imgView: ImageView, isRead: Boolean){
     if(isRead)
-        imgView.setImageResource(R.drawable.ic_baseline_check_circle_24)
+        imgView.setImageResource(R.drawable.ic_baseline_email_24)
     else
-        imgView.setImageResource(R.drawable.ic_baseline_check_circle_25)
+        imgView.setImageResource(R.drawable.ic_baseline_mark_email_read_24)
 }
 
 @BindingAdapter("isFavorite")
