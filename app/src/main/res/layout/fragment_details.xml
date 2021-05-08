@@ -53,8 +53,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="18sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/name, user.user.name)}"
                     tools:text="Name" />
 
@@ -63,8 +65,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="18sp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/phone, user.user.phone)}"
                     tools:text="Phone" />
             </LinearLayout>
@@ -83,8 +86,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="18sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/username, user.user.username)}"
                     tools:text="username" />
 
@@ -93,8 +98,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textSize="18sp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/email, user.user.email)}"
                     tools:text="email" />
 
@@ -139,8 +145,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textSize="18sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:text="@{String.format(@string/street, user.user.address.street)}"
                         tools:text="street" />
 
@@ -149,8 +157,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textSize="18sp"
+                        android:layout_marginEnd="8dp"
                         android:text="@{String.format(@string/zipcode, user.user.address.zipcode)}"
                         tools:text="zipcode" />
                 </LinearLayout>
@@ -169,8 +178,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textSize="18sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:text="@{String.format(@string/city, user.user.address.city)}"
                         tools:text="city" />
 
@@ -179,8 +190,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textSize="18sp"
+                        android:layout_marginEnd="8dp"
                         android:text="@{String.format(@string/suite, user.user.address.suite)}"
                         tools:text="suite" />
 
@@ -219,6 +231,7 @@
                     android:gravity="start"
                     android:textSize="18sp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/nameCompany, user.user.company.name)}"
                     tools:text="suite" />
 
@@ -229,6 +242,7 @@
                     android:gravity="start"
                     android:textSize="18sp"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/bs, user.user.company.bs)}"
                     tools:text="city" />
 
@@ -240,6 +254,7 @@
                     android:textSize="18sp"
                     android:layout_marginStart="5dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@{String.format(@string/catchPhrase, user.user.company.catchPhrase)}"
                     tools:text="city" />
 
