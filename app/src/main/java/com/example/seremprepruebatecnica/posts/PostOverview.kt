@@ -1,15 +1,14 @@
 package com.example.seremprepruebatecnica.posts
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.seremprepruebatecnica.R
 import com.example.seremprepruebatecnica.databinding.FragmentPostOverviewBinding
+import kotlinx.android.synthetic.main.fragment_post_overview.*
 
 
 class PostOverview : Fragment() {
@@ -22,7 +21,7 @@ class PostOverview : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentPostOverviewBinding.inflate(inflater)
 
@@ -31,9 +30,28 @@ class PostOverview : Fragment() {
         binding.viewModel = viewModel
 
         binding.recyclewView.adapter = PostsAdapter(
-            FavoriteClickListener { postFavorite ->  Log.d("fav", "$postFavorite")},
-            NavigateToDetails { id -> onNavigate(id) }
+            FavoriteClickListener { postFavorite ->
+                postFavorite.isFavorite = !postFavorite.isFavorite
+                binding.recyclewView.adapter?.notifyDataSetChanged()
+            },
+            NavigateToDetails { posts ->
+                if(posts.id in 1..20 && posts.isRead ) {
+                    posts.isRead = !posts.isRead
+                    posts.visited = true
+                }
+                binding.recyclewView.adapter?.notifyDataSetChanged()
+                onNavigate(posts.userId)
+            }
         )
+
+        viewModel.posts.observe(viewLifecycleOwner, { posts->
+            posts.forEach { post->
+                if ( post.id in 1..20 && !post.visited ){
+                    post.isRead = true
+                }
+            }
+            recyclewView.adapter?.notifyDataSetChanged()
+        })
 
         viewModel.navigateToDetails.observe(viewLifecycleOwner, {
             it?.let{
@@ -43,9 +61,6 @@ class PostOverview : Fragment() {
                 viewModel.onDetailsNavigated()
             }
         })
-
-
-
         return binding.root
     }
 

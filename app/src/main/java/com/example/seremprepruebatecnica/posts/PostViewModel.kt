@@ -1,4 +1,4 @@
-package com.example.seremprepruebatecnica.posts
+    package com.example.seremprepruebatecnica.posts
 
 import android.service.autofill.Validators.not
 import android.util.Log
@@ -11,7 +11,7 @@ class PostViewModel: ViewModel() {
 
 
     //Local variable to get post from the API
-    private val _posts = MutableLiveData<List<Posts>>()
+    private var _posts = MutableLiveData<List<Posts>>()
     //Variable to put the result in the recyclerView
     val posts: LiveData<List<Posts>>
         get() = _posts

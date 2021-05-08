@@ -17,6 +17,7 @@ class PostsAdapter(private val favoriteClickListener: FavoriteClickListener,
         RecyclerView.ViewHolder(binding.root) {
             fun bind(post: Posts, favoriteClickListener: FavoriteClickListener, navigate: NavigateToDetails){
                 binding.post = post
+                binding.clickListener = favoriteClickListener
                 binding.navigate = navigate
                 binding.executePendingBindings()
             }
@@ -29,7 +30,7 @@ class PostsAdapter(private val favoriteClickListener: FavoriteClickListener,
     override fun onBindViewHolder(holder: PostsViewHolder, position: Int) {
         val post = getItem(position)
 
-        post.isRead = post.id in 1..20
+        Log.d("postision", "${post.id}")
         holder.bind(post, favoriteClickListener, navigate)
     }
 
@@ -46,9 +47,9 @@ class PostsAdapter(private val favoriteClickListener: FavoriteClickListener,
     }
 }
 
-class FavoriteClickListener(val clickListener: (postID: Long) -> Unit){
-    fun onClick(post: Posts) = clickListener(post.id)
+class FavoriteClickListener(val clickListener: (post: Posts) -> Unit){
+    fun onClick(post: Posts) = clickListener(post)
 }
-class NavigateToDetails(val clickListener: (postID: Long) -> Unit){
-    fun onClick(post: Posts) = clickListener(post.userId)
+class NavigateToDetails(val clickListener: (post: Posts) -> Unit){
+    fun onClick(post: Posts) = clickListener(post)
 }
