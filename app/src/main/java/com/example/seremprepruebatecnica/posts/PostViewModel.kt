@@ -1,10 +1,8 @@
 package com.example.seremprepruebatecnica.posts
 
+import android.service.autofill.Validators.not
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.seremprepruebatecnica.network.PostApi
 import com.example.seremprepruebatecnica.network.Posts
 import kotlinx.coroutines.launch
@@ -18,12 +16,20 @@ class PostViewModel: ViewModel() {
     val posts: LiveData<List<Posts>>
         get() = _posts
 
+    private val _navigateToDetail = MutableLiveData<Long?>()
+    val navigateToDetails: LiveData<Long?>
+        get() = _navigateToDetail
+
+    fun navigateToDetails(id: Long){
+        _navigateToDetail.value = id
+    }
+
+    fun onDetailsNavigated(){
+        _navigateToDetail.value = null
+    }
     init{
         getPosts()
     }
-
-
-
 
     private fun getPosts(){
         viewModelScope.launch {
