@@ -81,7 +81,7 @@
             app:layout_constraintStart_toEndOf="@id/post_body"
             android:layout_marginStart="5dp"
             tools:layout_editor_absoluteX="322dp"
-            tools:src="@drawable/ic_baseline_check_circle_24" />
+            tools:src="@drawable/ic_baseline_email_24" />
 
         <ImageView
             android:id="@+id/post_favorite"
