@@ -1,5 +1,6 @@
 package com.example.seremprepruebatecnica
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,4 +23,21 @@ fun bindPost(text: TextView, title: String){
 @BindingAdapter("body")
 fun bindBody(textView: TextView, body: String){
     textView.text = body
+}
+
+@BindingAdapter("isRead")
+fun bindIsRead(imgView: ImageView, isRead: Boolean){
+    if(isRead)
+        imgView.setImageResource(R.drawable.ic_baseline_check_circle_24)
+    else
+        imgView.setImageResource(R.drawable.ic_baseline_check_circle_25)
+}
+
+@BindingAdapter("isFavorite")
+fun bindIsFavorite(imgView: ImageView, isFavorite: Boolean){
+    if (isFavorite){
+        imgView.setImageResource(R.drawable.ic_baseline_star_24)
+    }else{
+        imgView.setImageResource(R.drawable.ic_baseline_star_border_24)
+    }
 }
