@@ -1,12 +1,11 @@
 package com.example.seremprepruebatecnica.posts
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.seremprepruebatecnica.R
 import com.example.seremprepruebatecnica.databinding.FragmentPostOverviewBinding
 import kotlinx.android.synthetic.main.fragment_post_overview.*
 
@@ -61,7 +60,43 @@ class PostOverview : Fragment() {
                 viewModel.onDetailsNavigated()
             }
         })
+
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("All Posts")
+            ?.observe(viewLifecycleOwner, { key ->
+                val newList = viewModel.posts.value
+                if(key == "Favorites"){
+                    viewModel.setPosts(newList?.filter { it.isFavorite })
+                }else if(key == "All Posts"){
+                    viewModel.setPosts(viewModel.postBackUp.value)
+                }
+            })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overview_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.refresh ->{
+                viewModel.getPosts()
+            }
+            R.id.deletePosts -> {
+                viewModel.deletePosts()
+            }
+            R.id.favorites -> {
+                view?.findNavController()?.navigate(
+                    PostOverviewDirections.actionPostOverviewToFilterFavs()
+                )
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun onNavigate(id: Long) = viewModel.navigateToDetails(id)

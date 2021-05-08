@@ -16,9 +16,22 @@ class PostViewModel: ViewModel() {
     val posts: LiveData<List<Posts>>
         get() = _posts
 
+    private var _postBackUp = MutableLiveData<List<Posts>>()
+    val postBackUp: LiveData<List<Posts>>
+        get() = _postBackUp
+
+    fun setPosts(posts: List<Posts>?){
+        _posts.value = posts!!
+    }
+
     private val _navigateToDetail = MutableLiveData<Long?>()
     val navigateToDetails: LiveData<Long?>
         get() = _navigateToDetail
+
+
+    fun deletePosts(){
+        _posts.value = arrayListOf()
+    }
 
     fun navigateToDetails(id: Long){
         _navigateToDetail.value = id
@@ -31,10 +44,11 @@ class PostViewModel: ViewModel() {
         getPosts()
     }
 
-    private fun getPosts(){
+    fun getPosts(){
         viewModelScope.launch {
             try{
                 _posts.value = PostApi.retrofitService.getPosts()
+                _postBackUp.value = _posts.value
             }catch (e: Exception){
                 _posts.value = ArrayList()
             }
