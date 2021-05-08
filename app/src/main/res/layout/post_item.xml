@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="post"
             type="com.example.seremprepruebatecnica.network.Posts" />
-
+        <variable
+            name="clickListener"
+            type="com.example.seremprepruebatecnica.posts.FavoriteClickListener" />
+        <variable
+            name="navigate"
+            type="com.example.seremprepruebatecnica.posts.NavigateToDetails" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> navigate.onClick(post)}"
+        >
 
         <View
             android:id="@+id/itemDivider"
@@ -37,16 +45,17 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:title="@{post.title}"
+            app:layout_constraintBottom_toTopOf="@id/post_body"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/post_body"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@{post.title}"
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/post_body"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingStart="15dp"
             android:paddingTop="5dp"
@@ -55,12 +64,39 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:body="@{post.body}"
-            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Body"
+            app:layout_constraintEnd_toStartOf="@id/read_check"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/post_title"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <ImageView
+            android:id="@+id/read_check"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            app:isRead="@{post.read}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_title"
+            app:layout_constraintStart_toEndOf="@id/post_body"
+            android:layout_marginStart="5dp"
+            tools:layout_editor_absoluteX="322dp"
+            tools:src="@drawable/ic_baseline_check_circle_24" />
 
+        <ImageView
+            android:id="@+id/post_favorite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="@{() -> clickListener.onClick(post)}"
+            app:isFavorite="@{post.favorite}"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/read_check"
+            app:layout_constraintTop_toBottomOf="@+id/post_title"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="5dp"
+            tools:src="@drawable/ic_baseline_star_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
